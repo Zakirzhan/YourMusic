@@ -12,10 +12,13 @@ import Alamofire
 class SearchViewController: UITableViewController {
    
    //MARK: - Properties
-   let searchController = UISearchController(searchResultsController: nil)
+   private let searchController = UISearchController(searchResultsController: nil)
+   private var timer = Timer()
    
-   let tracks = [TrackModel(trackName: "first track", artistName: "Kirill"), TrackModel(trackName: "Second track", artistName: "Natali")]
+   private var networkService = NetworkService()
+   private var tracks = [Track]()
    
+   //MARK: - Lyfecycles
    override func viewDidLoad() {
       super.viewDidLoad()
       setup()
@@ -23,6 +26,7 @@ class SearchViewController: UITableViewController {
       
    }
    
+   //MARK: - FLow func
    private func setup() {
       tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cells.searchCell)
    }
@@ -45,7 +49,7 @@ extension SearchViewController {
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cells.searchCell, for: indexPath)
       let track = tracks[indexPath.row]
-      cell.textLabel?.text = "\(track.trackName)\n\(track.artistName)"
+      cell.textLabel?.text = "\(track.trackName ?? "noName track")\n\(track.artistName)"
       cell.textLabel?.numberOfLines = 2
       cell.imageView?.image = UIImage(systemName: "circle.fill")
       return cell
@@ -56,16 +60,22 @@ extension SearchViewController {
 extension SearchViewController:UISearchBarDelegate {
    
    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-      let url = "https://itunes.apple.com/search?term=\(searchText)"
       
-      AF.request(url).responseData { data in
-         if let error = data.error {
-            debugPrint("Eror received requesting data: \(error.localizedDescription)")
+      timer.invalidate()
+      timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
+         
+         self.networkService.fetchTracks(searchText: searchText) { [weak self] result in
+            DispatchQueue.main.async {
+               switch result {
+               case .success(let music):
+                  self?.tracks = music.results
+                  self?.tableView.reloadData()
+               case .failure(let error):
+                  debugPrint(error.localizedDescription)
+               }
+            }
          }
          
-         guard let data = data.data else { return }
-         let someString = String(data:data, encoding: .utf8)
-         print(someString)
-      }
+      })
    }
 }
