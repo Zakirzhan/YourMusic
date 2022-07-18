@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Constants {
+   
+   struct cells {
+      static let searchCell = "searchCellId"
+
+   }
+}

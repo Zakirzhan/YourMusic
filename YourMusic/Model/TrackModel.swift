@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct TrackModel {
+   let trackName: String
+   let artistName: String
+}
