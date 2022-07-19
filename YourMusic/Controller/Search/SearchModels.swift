@@ -34,12 +34,13 @@ enum Search {
 }
 
 struct SearchViewModel {
-   struct Cell {
-      let iconUrlString: String?
-      let trackName: String?
-      let collectionName: String?
-      let artistName: String
-      
+   
+   struct Cell: TrackCellViewModel {
+      var iconUrlString: String?
+      var trackName: String?
+      var collectionName: String?
+      var artistName: String
+      var previewUrl: String?
    }
    
    let cells: [Cell]

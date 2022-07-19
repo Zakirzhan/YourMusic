@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchDisplayLogic: class {
+protocol SearchDisplayLogic: AnyObject {
    func displayData(viewModel: Search.Model.ViewModel.ViewModelData)
 }
 
@@ -62,6 +62,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
    
    private func setupTableView() {
       table.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cells.searchCell)
+      
+      let nib = UINib(nibName: "TrackCell", bundle: nil)
+      table.register(nib, forCellReuseIdentifier: Constants.cells.trackCell)
    }
    
    
@@ -87,12 +90,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
    }
    
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = table.dequeueReusableCell(withIdentifier: Constants.cells.searchCell, for: indexPath)
+      guard let cell = table.dequeueReusableCell(withIdentifier: Constants.cells.trackCell, for: indexPath) as? TrackCell else {
+         return UITableViewCell()
+      }
+      
       let cellViewModel = searchViewModel.cells[indexPath.row]
-      cell.textLabel?.text = "\(cellViewModel.trackName ?? "NoName")\n\(cellViewModel.artistName)"
-      cell.textLabel?.numberOfLines = 2
-      cell.imageView?.image = UIImage(systemName: "circle.fill")
+      cell.trackImageVew.backgroundColor = .red
+      cell.configure(viewModel: cellViewModel)
       return cell
+   }
+   
+   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      84
    }
    
    
@@ -103,7 +112,7 @@ extension SearchViewController:UISearchBarDelegate {
    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
       timer?.invalidate()
       timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-         self.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText))         
+         self.interactor?.makeRequest(request: Search.Model.Request.RequestType.getTracks(searchText))
       })
    }
 }

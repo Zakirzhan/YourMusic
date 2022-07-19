@@ -20,7 +20,6 @@ class MainTabBarController: UITabBarController {
    //MARK: - Funcs
    private func setupViews() {
       
-      let searchVC = SearchMusicViewController()
       let libraryVC = ViewController()
 
       let searchVCStoryboard: SearchViewController = SearchViewController.loadFromStoryboard()
