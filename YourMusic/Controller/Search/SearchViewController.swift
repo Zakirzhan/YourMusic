@@ -95,7 +95,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
       }
       
       let cellViewModel = searchViewModel.cells[indexPath.row]
-      cell.trackImageVew.backgroundColor = .red
       cell.configure(viewModel: cellViewModel)
       return cell
    }
