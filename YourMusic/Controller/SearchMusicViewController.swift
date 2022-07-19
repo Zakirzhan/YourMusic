@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class SearchViewController: UITableViewController {
+class SearchMusicViewController: UITableViewController {
    
    //MARK: - Properties
    private let searchController = UISearchController(searchResultsController: nil)
@@ -40,7 +40,7 @@ class SearchViewController: UITableViewController {
 }
 
 //MARK: - setupCell
-extension SearchViewController {
+extension SearchMusicViewController {
    
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       tracks.count
@@ -57,7 +57,7 @@ extension SearchViewController {
 }
 
 //MARK: - Search delegate
-extension SearchViewController:UISearchBarDelegate {
+extension SearchMusicViewController:UISearchBarDelegate {
    
    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
       

@@ -20,10 +20,12 @@ class MainTabBarController: UITabBarController {
    //MARK: - Funcs
    private func setupViews() {
       
-      let searchVC = SearchViewController()
+      let searchVC = SearchMusicViewController()
       let libraryVC = ViewController()
 
-      let tabBarList = [generateViewControlles(rootVC: searchVC, image: UIImage(systemName: "magnifyingglass"), title: "Search"),
+      let searchVCStoryboard: SearchViewController = SearchViewController.loadFromStoryboard()
+      
+      let tabBarList = [generateViewControlles(rootVC: searchVCStoryboard, image: UIImage(systemName: "magnifyingglass"), title: "Search"),
                         generateViewControlles(rootVC: libraryVC, image: UIImage(systemName: "music.note.list"), title: "Library")]
       
       viewControllers = tabBarList
