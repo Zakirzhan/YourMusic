@@ -24,8 +24,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
    private var searchViewModel = SearchViewModel(cells: [])
    private var timer: Timer?
    
-   // MARK: Setup
+   private lazy var footerView = FooterView()
    
+   // MARK: Setup
    private func setup() {
       let viewController        = self
       let interactor            = SearchInteractor()
@@ -41,9 +42,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
    // MARK: Routing
    
    
-   
    // MARK: View lifecycle
-   
    override func viewDidLoad() {
       super.viewDidLoad()
       setup()
@@ -65,19 +64,19 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
       
       let nib = UINib(nibName: "TrackCell", bundle: nil)
       table.register(nib, forCellReuseIdentifier: Constants.cells.trackCell)
+      table.tableFooterView = footerView
    }
    
    
    
    func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
       switch viewModel {
-         
-      case .some:
-         print("viewControlle .some")
       case .displayTracks(let searchViewModel):
          self.searchViewModel = searchViewModel
          table.reloadData()
-         
+         footerView.hideLoading()
+      case .displayFooterView:
+         footerView.showLoader()
       }
    }
    
@@ -103,7 +102,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
       84
    }
    
+   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+         let label = UILabel()
+      label.text = " Plaese enter search term above."
+      label.textAlignment = .center
+      label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+      return label
+   }
    
+   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      return searchViewModel.cells.count > 0 ? 0 : 250
+   }
 }
 
 //MARK: - SearchBar delegate
