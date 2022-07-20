@@ -49,6 +49,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
       
       setupSearchBar()
       setupTableView()
+      
    }
    
    //MARK: - flow funcs
@@ -57,6 +58,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
       navigationItem.hidesSearchBarWhenScrolling = false
       searchController.obscuresBackgroundDuringPresentation = false
       searchController.searchBar.delegate = self
+      searchBar(searchController.searchBar, textDidChange: "Elvis")
+      
    }
    
    private func setupTableView() {
