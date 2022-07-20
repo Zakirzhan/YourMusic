@@ -44,10 +44,9 @@
                         <constraint firstAttribute="width" secondItem="0CW-KF-KDf" secondAttribute="height" id="u5h-xB-Sh6"/>
                     </constraints>
                 </imageView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vEL-Pq-M1Z">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vEL-Pq-M1Z">
                     <rect key="frame" x="28" y="448" width="334" height="31"/>
-                    <color key="minimumTrackTintColor" systemColor="systemGrayColor"/>
-                    <color key="thumbTintColor" systemColor="systemGrayColor"/>
+                    <color key="minimumTrackTintColor" systemColor="systemGray2Color"/>
                     <connections>
                         <action selector="handleCurrentTimeSlider:" destination="qui-5Y-6gf" eventType="valueChanged" id="upZ-bt-ZpM"/>
                     </connections>
