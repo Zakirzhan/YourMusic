@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		491DC8D12885950E0078C57C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491DC8D02885950E0078C57C /* Constants.swift */; };
 		4928ABC7288691E500820D41 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4928ABC6288691E500820D41 /* SearchViewController.storyboard */; };
-		4928ABCA288694EB00820D41 /* UIViewController + Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928ABC9288694EB00820D41 /* UIViewController + Storyboard.swift */; };
+		4928ABCA288694EB00820D41 /* UIViewController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928ABC9288694EB00820D41 /* UIViewController + extension.swift */; };
 		4928ABCD2886CDEA00820D41 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4928ABCC2886CDEA00820D41 /* TrackCell.xib */; };
 		4928ABCF2886CE0500820D41 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928ABCE2886CE0500820D41 /* TrackCell.swift */; };
 		493C67602885D85E00C9A43C /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493C67592885D85E00C9A43C /* SearchPresenter.swift */; };
@@ -22,6 +22,7 @@
 		4951FE222886F59C00ED6D90 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951FE212886F59C00ED6D90 /* TrackDetailView.swift */; };
 		4951FE242886F5A600ED6D90 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4951FE232886F5A600ED6D90 /* TrackDetailView.xib */; };
 		49687998288811D00030708D /* CMTime + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49687997288811D00030708D /* CMTime + extension.swift */; };
+		4968799A28883F400030708D /* UIVIew + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968799928883F400030708D /* UIVIew + extension.swift */; };
 		49FC11B72885C7FB001A1615 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC11B62885C7FB001A1615 /* SearchResponse.swift */; };
 		49FC11B92885CF34001A1615 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC11B82885CF34001A1615 /* NetworkService.swift */; };
 		49FF07B428858B6D0047B3B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF07B328858B6D0047B3B8 /* AppDelegate.swift */; };
@@ -37,7 +38,7 @@
 		4424F6ACD3BFD6C10522197F /* Pods-YourMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourMusic.release.xcconfig"; path = "Target Support Files/Pods-YourMusic/Pods-YourMusic.release.xcconfig"; sourceTree = "<group>"; };
 		491DC8D02885950E0078C57C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4928ABC6288691E500820D41 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
-		4928ABC9288694EB00820D41 /* UIViewController + Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Storyboard.swift"; sourceTree = "<group>"; };
+		4928ABC9288694EB00820D41 /* UIViewController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + extension.swift"; sourceTree = "<group>"; };
 		4928ABCC2886CDEA00820D41 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		4928ABCE2886CE0500820D41 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		493C67592885D85E00C9A43C /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		4951FE212886F59C00ED6D90 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		4951FE232886F5A600ED6D90 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		49687997288811D00030708D /* CMTime + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + extension.swift"; sourceTree = "<group>"; };
+		4968799928883F400030708D /* UIVIew + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + extension.swift"; sourceTree = "<group>"; };
 		49FC11B62885C7FB001A1615 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		49FC11B82885CF34001A1615 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49FF07B028858B6D0047B3B8 /* YourMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,14 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4928ABC8288694D300820D41 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				4928ABC9288694EB00820D41 /* UIViewController + Storyboard.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		4928ABCB2886CDC700820D41 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +156,6 @@
 		49FF07B228858B6D0047B3B8 /* YourMusic */ = {
 			isa = PBXGroup;
 			children = (
-				4928ABC8288694D300820D41 /* Helpers */,
 				49FF07C128858B6E0047B3B8 /* Info.plist */,
 				49FF07B328858B6D0047B3B8 /* AppDelegate.swift */,
 				49FF07CC28858CA90047B3B8 /* Resourses */,
@@ -213,7 +206,9 @@
 		49FF07CB28858CA50047B3B8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4928ABC9288694EB00820D41 /* UIViewController + extension.swift */,
 				49687997288811D00030708D /* CMTime + extension.swift */,
+				4968799928883F400030708D /* UIVIew + extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -361,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FC11B72885C7FB001A1615 /* SearchResponse.swift in Sources */,
-				4928ABCA288694EB00820D41 /* UIViewController + Storyboard.swift in Sources */,
+				4928ABCA288694EB00820D41 /* UIViewController + extension.swift in Sources */,
 				491DC8D12885950E0078C57C /* Constants.swift in Sources */,
 				4951FE222886F59C00ED6D90 /* TrackDetailView.swift in Sources */,
 				49FF07B828858B6D0047B3B8 /* ViewController.swift in Sources */,
@@ -376,6 +371,7 @@
 				493C67632885D85E00C9A43C /* SearchModels.swift in Sources */,
 				49FF07CE28858CD30047B3B8 /* MainTabBarController.swift in Sources */,
 				493C67602885D85E00C9A43C /* SearchPresenter.swift in Sources */,
+				4968799A28883F400030708D /* UIVIew + extension.swift in Sources */,
 				49FC11B92885CF34001A1615 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

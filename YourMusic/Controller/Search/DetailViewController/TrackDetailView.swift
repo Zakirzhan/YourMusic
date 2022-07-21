@@ -26,16 +26,25 @@ class TrackDetailView: UIView {
    @IBOutlet weak var authorTitleLabel: UILabel!
    @IBOutlet weak var playPauseButton: UIButton!
    @IBOutlet weak var volumeSlider: UISlider!
+   @IBOutlet weak var minimizeButton: UIButton!
    
-   let player: AVPlayer = {
+   @IBOutlet weak var miniTrackView: UIView!
+   @IBOutlet weak var miniTrackImageView: UIImageView!
+   @IBOutlet weak var miniTrackTitleView: UILabel!
+   @IBOutlet weak var miniPlayPauseButton: UIButton!
+   @IBOutlet weak var miniNextTrackButton: UIButton!
+   
+   private let player: AVPlayer = {
       let avPlayer = AVPlayer()
       avPlayer.automaticallyWaitsToMinimizeStalling = false
       return avPlayer
    }()
-   let scale: CGFloat = 0.8
+   
+   private let scale: CGFloat = 0.8
+   private var volume: Float = 0.5
    
    weak var delegate: TrackMovingDelegate?
-   
+   weak var tabBarDelegate: MainTabBarControllerDelagate?
    
    //MARK: - AwakeFromNib
    override func awakeFromNib() {
@@ -48,17 +57,31 @@ class TrackDetailView: UIView {
    private func setup() {
       trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
       trackImageView.layer.cornerRadius = 5
+      
+      player.volume = volume
+    
    }
    
    func configure(viewModel: SearchViewModel.Cell) {
       trackTitleLabel.text = viewModel.trackName
+      miniTrackTitleView.text = viewModel.trackName
       authorTitleLabel.text = viewModel.artistName
+      playPauseButton.setImage(UIImage.init(systemName: "pause.fill"), for: .normal)
+      
+      trackImageView.dropShadow()
+      miniTrackImageView.dropShadow(color: UIColor.black.cgColor, opacity: 0.5, radius: 1, offset: CGSize(width: 1 , height: 1))
+
+      
       playTrack(previewUrl: viewModel.previewUrl)
       monitorStartTime()
       observePlayerCurrentTime()
+      
       let string600 = viewModel.iconUrlString?.replacingOccurrences(of: "100x100", with: "600x600")
       guard let url = URL(string: string600 ?? "") else { return }
       trackImageView.sd_setImage(with: url)
+      miniTrackImageView.sd_setImage(with: url)
+      
+      
    }
    
    private func playTrack(previewUrl: String?) {
@@ -67,7 +90,8 @@ class TrackDetailView: UIView {
       let playerItem = AVPlayerItem(url: url)
       player.replaceCurrentItem(with: playerItem)
       player.play()
-      player.volume = 0.5
+      player.volume = volume
+      
    }
    
    // Time setup
@@ -103,7 +127,6 @@ class TrackDetailView: UIView {
       self.currentTimeSlider.value = Float(percentage)
    }
    
-   
    // Animations
    private func enlargeTrackImageView() {
       UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1,options: .curveEaseInOut) {
@@ -119,7 +142,7 @@ class TrackDetailView: UIView {
    
    //MARK: - Actions
    @IBAction func dragDownButtonTapped(_ sender: UIButton) {
-      self.removeFromSuperview()
+      self.tabBarDelegate?.minimizeTrackDetailController()
    }
    
    @IBAction func handleCurrentTimeSlider(_ sender: UISlider) {
@@ -132,7 +155,8 @@ class TrackDetailView: UIView {
    }
    
    @IBAction func handleVolumeSlider(_ sender: UISlider) {
-      player.volume = sender.value
+      volume = sender.value
+      player.volume = volume
    }
    
    @IBAction func previousTrack(_ sender: UIButton) {
@@ -149,11 +173,11 @@ class TrackDetailView: UIView {
       if player.timeControlStatus == .paused {
          enlargeTrackImageView()
          player.play()
-         playPauseButton.setImage(UIImage.init(systemName: "pause.fill"), for: .normal)
+         sender.setImage(UIImage.init(systemName: "pause.fill"), for: .normal)
       } else {
          reduceTrackImageView()
          player.pause()
-         playPauseButton.setImage(UIImage.init(systemName: "play.fill"), for: .normal)
+         sender.setImage(UIImage.init(systemName: "play.fill"), for: .normal)
       }
    }
    
