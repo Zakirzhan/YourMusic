@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 protocol MainTabBarControllerDelagate: AnyObject {
    func minimizeTrackDetailController()
@@ -36,14 +37,19 @@ class MainTabBarController: UITabBarController {
    //MARK: - Funcs
    private func setupTabBar() {
       tabBar.tintColor = .systemPink
-
    }
    
    private func setupViews() {
       
-      let libraryVC = ViewController()
-      let tabBarList = [generateViewControlles(rootVC: searchVCStoryboard, image: UIImage(systemName: "magnifyingglass"), title: "Search"),
-                        generateViewControlles(rootVC: libraryVC, image: UIImage(systemName: "music.note.list"), title: "Library")]
+      let libraryVC = LibraryView()
+      let hostView = UIHostingController(rootView: libraryVC)
+      hostView.tabBarItem.image = UIImage(systemName: "music.note.list")
+      hostView.tabBarItem.title = "Library"
+      
+      let tabBarList = [
+         hostView,
+         generateViewControlles(rootVC: searchVCStoryboard, image: UIImage(systemName: "magnifyingglass"), title: "Search")
+                        ]
       
       viewControllers = tabBarList
    }

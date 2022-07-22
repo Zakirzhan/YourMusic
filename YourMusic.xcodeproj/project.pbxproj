@@ -23,10 +23,11 @@
 		4951FE242886F5A600ED6D90 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4951FE232886F5A600ED6D90 /* TrackDetailView.xib */; };
 		49687998288811D00030708D /* CMTime + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49687997288811D00030708D /* CMTime + extension.swift */; };
 		4968799A28883F400030708D /* UIVIew + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968799928883F400030708D /* UIVIew + extension.swift */; };
+		49A0C1EE288ACEB3000AD015 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0C1ED288ACEB3000AD015 /* LibraryView.swift */; };
+		49A0C1F0288AD803000AD015 /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0C1EF288AD803000AD015 /* LibraryCell.swift */; };
 		49FC11B72885C7FB001A1615 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC11B62885C7FB001A1615 /* SearchResponse.swift */; };
 		49FC11B92885CF34001A1615 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FC11B82885CF34001A1615 /* NetworkService.swift */; };
 		49FF07B428858B6D0047B3B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF07B328858B6D0047B3B8 /* AppDelegate.swift */; };
-		49FF07B828858B6D0047B3B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF07B728858B6D0047B3B8 /* ViewController.swift */; };
 		49FF07BD28858B6E0047B3B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49FF07BC28858B6E0047B3B8 /* Assets.xcassets */; };
 		49FF07C028858B6E0047B3B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FF07BE28858B6E0047B3B8 /* LaunchScreen.storyboard */; };
 		49FF07CE28858CD30047B3B8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF07CD28858CD30047B3B8 /* MainTabBarController.swift */; };
@@ -52,11 +53,12 @@
 		4951FE232886F5A600ED6D90 /* TrackDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackDetailView.xib; sourceTree = "<group>"; };
 		49687997288811D00030708D /* CMTime + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + extension.swift"; sourceTree = "<group>"; };
 		4968799928883F400030708D /* UIVIew + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew + extension.swift"; sourceTree = "<group>"; };
+		49A0C1ED288ACEB3000AD015 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		49A0C1EF288AD803000AD015 /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
 		49FC11B62885C7FB001A1615 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		49FC11B82885CF34001A1615 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		49FF07B028858B6D0047B3B8 /* YourMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FF07B328858B6D0047B3B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49FF07B728858B6D0047B3B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49FF07BC28858B6E0047B3B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49FF07BF28858B6E0047B3B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49FF07C128858B6E0047B3B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,6 +137,15 @@
 			path = SearchViewController;
 			sourceTree = "<group>";
 		};
+		49A0C1EC288ACEA1000AD015 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				49A0C1ED288ACEB3000AD015 /* LibraryView.swift */,
+				49A0C1EF288AD803000AD015 /* LibraryCell.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		49FF07A728858B6D0047B3B8 = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +184,7 @@
 			children = (
 				4951FE1E2886F4A300ED6D90 /* MainTabBar */,
 				493C673C2885D73100C9A43C /* Search */,
-				49FF07B728858B6D0047B3B8 /* ViewController.swift */,
+				49A0C1EC288ACEA1000AD015 /* Library */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -359,7 +370,6 @@
 				4928ABCA288694EB00820D41 /* UIViewController + extension.swift in Sources */,
 				491DC8D12885950E0078C57C /* Constants.swift in Sources */,
 				4951FE222886F59C00ED6D90 /* TrackDetailView.swift in Sources */,
-				49FF07B828858B6D0047B3B8 /* ViewController.swift in Sources */,
 				493C67652885D85E00C9A43C /* SearchInteractor.swift in Sources */,
 				4951FE1D2886EF6600ED6D90 /* FooterView.swift in Sources */,
 				49687998288811D00030708D /* CMTime + extension.swift in Sources */,
@@ -371,6 +381,8 @@
 				493C67632885D85E00C9A43C /* SearchModels.swift in Sources */,
 				49FF07CE28858CD30047B3B8 /* MainTabBarController.swift in Sources */,
 				493C67602885D85E00C9A43C /* SearchPresenter.swift in Sources */,
+				49A0C1F0288AD803000AD015 /* LibraryCell.swift in Sources */,
+				49A0C1EE288ACEB3000AD015 /* LibraryView.swift in Sources */,
 				4968799A28883F400030708D /* UIVIew + extension.swift in Sources */,
 				49FC11B92885CF34001A1615 /* NetworkService.swift in Sources */,
 			);
