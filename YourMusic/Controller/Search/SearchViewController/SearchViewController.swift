@@ -53,6 +53,20 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
       
    }
    
+   override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      
+      let keyWindow = UIApplication.shared.connectedScenes.filter { scene in
+         scene.activationState == .foregroundActive
+      }.map { scene in
+         scene as? UIWindowScene
+      }.compactMap({$0}).first?.windows.filter({ window in
+         window.isKeyWindow
+      }).first
+      let tabBarVC = keyWindow?.rootViewController as? MainTabBarController
+      tabBarVC?.trackDetailView.delegate = self
+      
+   }
    //MARK: - flow funcs
    private func setupSearchBar() {
       navigationItem.searchController = searchController

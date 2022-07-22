@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import AVKit
 
-protocol TrackMovingDelegate: AnyObject {
+protocol TrackMovingDelegate {
    func movePreviousTrack() -> SearchViewModel.Cell?
    func moveNextTrack() -> SearchViewModel.Cell?
 }
@@ -44,7 +44,7 @@ class TrackDetailView: UIView {
    private var volume: Float = 0.5
    private var viewTranslation = CGPoint(x: 0, y: 0)
    
-   weak var delegate: TrackMovingDelegate?
+   var delegate: TrackMovingDelegate?
    weak var tabBarDelegate: MainTabBarControllerDelagate?
    
    //MARK: - AwakeFromNib
@@ -255,8 +255,4 @@ class TrackDetailView: UIView {
    }
    
 }
-
-
-
-
 

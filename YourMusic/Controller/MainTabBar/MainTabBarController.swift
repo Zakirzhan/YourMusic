@@ -41,13 +41,14 @@ class MainTabBarController: UITabBarController {
    
    private func setupViews() {
       
-      let libraryVC = LibraryView()
-      let hostView = UIHostingController(rootView: libraryVC)
-      hostView.tabBarItem.image = UIImage(systemName: "music.note.list")
-      hostView.tabBarItem.title = "Library"
+      var libraryVC = LibraryView()
+      libraryVC.tabBarDelegate = self
+      let libraryHostView = UIHostingController(rootView: libraryVC)
+      libraryHostView.tabBarItem.image = UIImage(systemName: "music.note.list")
+      libraryHostView.tabBarItem.title = "Library"
       
       let tabBarList = [
-         hostView,
+         libraryHostView,
          generateViewControlles(rootVC: searchVCStoryboard, image: UIImage(systemName: "magnifyingglass"), title: "Search")
                         ]
       
