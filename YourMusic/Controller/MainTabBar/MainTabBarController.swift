@@ -26,7 +26,7 @@ class MainTabBarController: UITabBarController {
    //MARK: - Lyfecycles
    override func viewDidLoad() {
       super.viewDidLoad()
-   
+      
       setupViews()
       setupTabBar()
       setupTrackDetailView()
@@ -34,6 +34,11 @@ class MainTabBarController: UITabBarController {
    }
    
    //MARK: - Funcs
+   private func setupTabBar() {
+      tabBar.tintColor = .systemPink
+
+   }
+   
    private func setupViews() {
       
       let libraryVC = ViewController()
@@ -41,11 +46,6 @@ class MainTabBarController: UITabBarController {
                         generateViewControlles(rootVC: libraryVC, image: UIImage(systemName: "music.note.list"), title: "Library")]
       
       viewControllers = tabBarList
-   }
-   
-   private func setupTabBar() {
-      tabBar.tintColor = .systemPink
-
    }
    
    private func generateViewControlles(rootVC: UIViewController, image: UIImage?, title: String) -> UIViewController {
@@ -79,19 +79,18 @@ class MainTabBarController: UITabBarController {
    }
 }
 
+//MARK: - MainTabBar delegate
 extension MainTabBarController: MainTabBarControllerDelagate {
    func maximizedTrackDetailView(viewModel: SearchViewModel.Cell?) {
       minimizedTopAnchorConstraint.isActive = false
       maximizedTopAnchorConstraint.isActive = true
-
-      
       maximizedTopAnchorConstraint.constant = 0
       bottomAnchorConstraint.constant = 0
       
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1,options: .curveEaseOut) {
-         self.trackDetailView.miniTrackView.isHidden = true
-         self.trackDetailView.minimizeButton.isHidden = false
-         self.trackDetailView.trackImageView.isHidden = false
+         self.trackDetailView.miniTrackView.alpha = 0
+         self.trackDetailView.minimizeButton.alpha = 1
+         self.trackDetailView.trackImageView.alpha = 1
          self.view.layoutIfNeeded()
          self.tabBar.isHidden = true
       }
@@ -106,9 +105,9 @@ extension MainTabBarController: MainTabBarControllerDelagate {
       minimizedTopAnchorConstraint.isActive = true
 
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1,options: .curveEaseOut) {
-         self.trackDetailView.miniTrackView.isHidden = false
-         self.trackDetailView.minimizeButton.isHidden = true
-         self.trackDetailView.trackImageView.isHidden = true
+         self.trackDetailView.miniTrackView.alpha = 1
+         self.trackDetailView.minimizeButton.alpha = 0
+         self.trackDetailView.trackImageView.alpha = 0
          self.trackDetailView.miniPlayPauseButton.setImage(self.trackDetailView.playPauseButton.imageView?.image, for: .normal)
          self.view.layoutIfNeeded()
          self.tabBar.isHidden = false

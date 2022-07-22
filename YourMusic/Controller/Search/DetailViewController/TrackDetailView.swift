@@ -16,8 +16,8 @@ protocol TrackMovingDelegate: AnyObject {
 }
 
 class TrackDetailView: UIView {
-   //MARK: - Properties
    
+   //MARK: - Properties
    @IBOutlet weak var trackImageView: UIImageView!
    @IBOutlet weak var currentTimeSlider: UISlider!
    @IBOutlet weak var currentTimeLabel: UILabel!
@@ -42,6 +42,7 @@ class TrackDetailView: UIView {
    
    private let scale: CGFloat = 0.8
    private var volume: Float = 0.5
+   private var viewTranslation = CGPoint(x: 0, y: 0)
    
    weak var delegate: TrackMovingDelegate?
    weak var tabBarDelegate: MainTabBarControllerDelagate?
@@ -50,7 +51,7 @@ class TrackDetailView: UIView {
    override func awakeFromNib() {
       super.awakeFromNib()
       setup()
-      
+      setupGestures()
    }
    
    //MARK: - flow func
@@ -59,7 +60,7 @@ class TrackDetailView: UIView {
       trackImageView.layer.cornerRadius = 5
       
       player.volume = volume
-    
+      
    }
    
    func configure(viewModel: SearchViewModel.Cell) {
@@ -70,7 +71,6 @@ class TrackDetailView: UIView {
       
       trackImageView.dropShadow()
       miniTrackImageView.dropShadow(color: UIColor.black.cgColor, opacity: 0.5, radius: 1, offset: CGSize(width: 1 , height: 1))
-
       
       playTrack(previewUrl: viewModel.previewUrl)
       monitorStartTime()
@@ -84,8 +84,16 @@ class TrackDetailView: UIView {
       
    }
    
+   //Gestures
+   private func setupGestures() {
+      miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximized)))
+      miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan)))
+      minimizeButton.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(hanldeDismissPan)))
+   }
+   
+   
+   
    private func playTrack(previewUrl: String?) {
-      
       guard let url = URL(string: previewUrl ?? "") else { return }
       let playerItem = AVPlayerItem(url: url)
       player.replaceCurrentItem(with: playerItem)
@@ -96,7 +104,6 @@ class TrackDetailView: UIView {
    
    // Time setup
    private func monitorStartTime() {
-      
       let time = CMTimeMake(value: 1, timescale: 3)
       let timer = [NSValue(time: time)]
       
@@ -141,6 +148,72 @@ class TrackDetailView: UIView {
    }
    
    //MARK: - Actions
+   
+   @objc private func handleTapMaximized() {
+      self.tabBarDelegate?.maximizedTrackDetailView(viewModel: nil)
+   }
+   
+   @objc private func handlePan(gesture: UIPanGestureRecognizer) {
+      
+      switch gesture.state {
+      case .changed:
+         handlePanChanged(gesture: gesture)
+      case .ended:
+         handlePanEnded(gesture: gesture)
+      @unknown default:
+         debugPrint("unknown default")
+      }
+   }
+
+   @objc private func hanldeDismissPan(gesture: UIPanGestureRecognizer) {
+      switch gesture.state {
+      case .changed:
+         viewTranslation = gesture.translation(in: self)
+         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = CGAffineTransform(translationX: 0, y: self.viewTranslation.y)
+         })
+      case .ended:
+         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
+            if self.viewTranslation.y > 200 {
+               self.tabBarDelegate?.minimizeTrackDetailController()
+            }
+         })
+         
+      @unknown default:
+         debugPrint("unknown gesture")
+      }
+      
+   }
+   
+   private func handlePanChanged(gesture: UIPanGestureRecognizer) {
+      let translation = gesture.translation(in: self.superview)
+      self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+      
+      let newAlpha = 1 + translation.y / 200
+      self.miniTrackView.alpha = newAlpha < 0 ? 0 : newAlpha
+      self.trackImageView.alpha = -translation.y / 200
+      self.minimizeButton.alpha = -translation.y / 200
+      
+   }
+   
+   private func handlePanEnded(gesture: UIPanGestureRecognizer) {
+      let translation = gesture.translation(in: self.superview)
+      let velocity = gesture.velocity(in: self.superview)
+      
+      UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut) {
+         self.transform = .identity
+         if translation.y < -200 || velocity.y < -500 {
+            self.tabBarDelegate?.maximizedTrackDetailView(viewModel: nil)
+         } else {
+            self.miniTrackView.alpha = 1
+            self.trackImageView.alpha = 0
+            self.minimizeButton.alpha = 0
+         }
+      }
+   }
+   
+   
    @IBAction func dragDownButtonTapped(_ sender: UIButton) {
       self.tabBarDelegate?.minimizeTrackDetailController()
    }
