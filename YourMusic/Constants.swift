@@ -13,4 +13,8 @@ struct Constants {
       static let searchCell = "searchCellId"
       static let trackCell = "TrackCell"
    }
+   
+   struct keys {
+      static let trackKey = "trackKey"
+   }
 }

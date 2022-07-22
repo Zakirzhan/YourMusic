@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,39 +25,60 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crazy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F57-et-fEv">
-                        <rect key="frame" x="89" y="12" width="300" height="21"/>
+                        <rect key="frame" x="89" y="12" width="250" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fantasia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyP-yz-WzI">
-                        <rect key="frame" x="89" y="36" width="300" height="16"/>
+                        <rect key="frame" x="89" y="36" width="250" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <color key="textColor" systemColor="systemGray2Color"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2006" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piG-U9-EOi">
-                        <rect key="frame" x="89" y="55" width="300" height="16"/>
+                        <rect key="frame" x="89" y="55" width="250" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                         <color key="textColor" systemColor="systemGray3Color"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8I-F9-G8z">
+                        <rect key="frame" x="344" y="17" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="6Pr-aG-eLk"/>
+                            <constraint firstAttribute="height" constant="50" id="j7g-uR-IWj"/>
+                        </constraints>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="plus" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
+                        </state>
+                        <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="22"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="addTrackAction:" destination="vV1-tU-kkE" eventType="touchUpInside" id="Q4t-Nr-7wU"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HyP-yz-WzI" firstAttribute="top" secondItem="F57-et-fEv" secondAttribute="bottom" constant="3" id="7TW-OU-maq"/>
                     <constraint firstItem="piG-U9-EOi" firstAttribute="leading" secondItem="F57-et-fEv" secondAttribute="leading" id="9R0-Oe-B0s"/>
                     <constraint firstItem="TTc-ZX-RXE" firstAttribute="leading" secondItem="EnM-cs-4zw" secondAttribute="leading" constant="21" id="CnK-XF-YRk"/>
-                    <constraint firstAttribute="trailing" secondItem="F57-et-fEv" secondAttribute="trailing" constant="25" id="DfA-5H-I7E"/>
                     <constraint firstItem="piG-U9-EOi" firstAttribute="top" secondItem="HyP-yz-WzI" secondAttribute="bottom" constant="3" id="IQX-Od-q9J"/>
+                    <constraint firstItem="V8I-F9-G8z" firstAttribute="centerY" secondItem="EnM-cs-4zw" secondAttribute="centerY" id="IUc-rd-ez1"/>
                     <constraint firstItem="TTc-ZX-RXE" firstAttribute="top" secondItem="EnM-cs-4zw" secondAttribute="top" constant="12" id="MX8-e2-Cug"/>
                     <constraint firstItem="HyP-yz-WzI" firstAttribute="trailing" secondItem="F57-et-fEv" secondAttribute="trailing" id="NIf-U0-6YC"/>
                     <constraint firstItem="piG-U9-EOi" firstAttribute="trailing" secondItem="F57-et-fEv" secondAttribute="trailing" id="XhM-1f-VwE"/>
                     <constraint firstItem="F57-et-fEv" firstAttribute="top" secondItem="TTc-ZX-RXE" secondAttribute="top" id="elg-x2-CQq"/>
+                    <constraint firstItem="V8I-F9-G8z" firstAttribute="leading" secondItem="F57-et-fEv" secondAttribute="trailing" constant="5" id="huL-94-KGP"/>
                     <constraint firstItem="F57-et-fEv" firstAttribute="leading" secondItem="TTc-ZX-RXE" secondAttribute="trailing" constant="8" id="lmG-az-djc"/>
                     <constraint firstItem="HyP-yz-WzI" firstAttribute="leading" secondItem="F57-et-fEv" secondAttribute="leading" id="q5b-VW-hIe"/>
+                    <constraint firstAttribute="trailing" secondItem="V8I-F9-G8z" secondAttribute="trailing" constant="20" id="x2j-gE-OE4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addTrackButton" destination="V8I-F9-G8z" id="i6p-s0-DHh"/>
                 <outlet property="artistNameLabel" destination="HyP-yz-WzI" id="wGk-hM-5UI"/>
                 <outlet property="collectionNameLabel" destination="piG-U9-EOi" id="UeT-sm-VKi"/>
                 <outlet property="trackImageView" destination="TTc-ZX-RXE" id="cpn-5j-G80"/>
@@ -65,11 +88,15 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

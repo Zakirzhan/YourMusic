@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct LibraryView: View {
+   
+   var tracks = UserDefaults.standard.savedTracks()
+   
    var body: some View {
       NavigationView {
          VStack {
             GeometryReader { geometry in
+               let buttonWidth = geometry.size.width / 2 - 20
                VStack {
                   HStack {
                      Button() {
@@ -19,7 +23,7 @@ struct LibraryView: View {
                      } label: {
                         Image(systemName: "play.fill")
                            .foregroundColor(.pink)
-                           .frame(width: geometry.size.width / 2 - 20, height: 50)
+                           .frame(width: abs(buttonWidth) , height: 50)
                            .background(Color(UIColor.systemGray6.cgColor))
                            .cornerRadius(10)
                      }// Button
@@ -30,7 +34,7 @@ struct LibraryView: View {
                      } label: {
                         Image(systemName: "arrow.2.circlepath")
                            .foregroundColor(.pink)
-                           .frame(width: geometry.size.width / 2 - 20 , height: 50)
+                           .frame(width: abs(buttonWidth), height: 50)
                            .background(Color(UIColor.systemGray6.cgColor))
                            .cornerRadius(10)
                      } //Button
@@ -38,16 +42,14 @@ struct LibraryView: View {
                      
                   }//HStack
                   Divider()
-                  List {
-                     LibraryCell()
+                  List(tracks) { track in
+                     LibraryCell(cell: track)
+                     
                   }
                   .listStyle(.inset)
                   
                } // VStack
-               
-               
-            } // geometry
-            
+            } // geometry  
          } //VStack
          .navigationTitle("Library")
       } //Navigation

@@ -22,6 +22,9 @@ class TrackCell: UITableViewCell {
    @IBOutlet weak var trackNameLabel: UILabel!
    @IBOutlet weak var artistNameLabel: UILabel!
    @IBOutlet weak var collectionNameLabel: UILabel!
+   @IBOutlet weak var addTrackButton: UIButton!
+   
+   private var cell: SearchViewModel.Cell?
    
    override class func awakeFromNib() {
       super.awakeFromNib()
@@ -33,13 +36,42 @@ class TrackCell: UITableViewCell {
    }
    
    //MARK: - flow func
-   func configure(viewModel: TrackCellViewModel) {
+   func configure(viewModel: SearchViewModel.Cell) {
+
+      self.cell = viewModel
+      let listOfTracks = UserDefaults.standard.savedTracks()
+      
+      let hasFavorite = listOfTracks.firstIndex(where: {
+         $0.trackName == self.cell?.trackName && $0.artistName == self.cell?.artistName
+      }) != nil
+      
+      if hasFavorite {
+         addTrackButton.isHidden = true
+      } else {
+         addTrackButton.isHidden = false
+      }
+      
       trackNameLabel.text = viewModel.trackName
       artistNameLabel.text = viewModel.artistName
       collectionNameLabel.text = viewModel.collectionName
       
       guard let url = URL(string: viewModel.iconUrlString ?? "") else { return }
       trackImageView.sd_setImage(with: url)
+      trackImageView.layer.cornerRadius = 6
    }
    
+   //MARK: - Actions
+   @IBAction func addTrackAction(_ sender: UIButton) {
+      guard let cell = cell else { return }
+      var listOfTracks = UserDefaults.standard.savedTracks()
+      
+      addTrackButton.isHidden = true
+      listOfTracks.append(cell)
+      
+      if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: listOfTracks, requiringSecureCoding: false) {
+         UserDefaults.standard.set(savedData, forKey: Constants.keys.trackKey)
+         
+      }
+
+   }
 }
