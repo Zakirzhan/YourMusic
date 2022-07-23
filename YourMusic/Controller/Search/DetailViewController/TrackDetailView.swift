@@ -164,7 +164,7 @@ class TrackDetailView: UIView {
          debugPrint("unknown default")
       }
    }
-
+   
    @objc private func hanldeDismissPan(gesture: UIPanGestureRecognizer) {
       switch gesture.state {
       case .changed:

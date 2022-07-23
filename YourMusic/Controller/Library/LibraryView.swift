@@ -70,7 +70,7 @@ struct LibraryView: View {
                               self.track = track
                               self.showingAlert = true
                            }
-                           
+                        
                      }
                      .onDelete(perform: delete)
                   }
@@ -79,7 +79,7 @@ struct LibraryView: View {
                      ActionSheet(title: Text("Are you sure you want to delete this track?"), buttons: [.cancel(), .destructive(Text("Delete"), action: {
                         self.delete(track: self.track)
                      })])
-    
+                     
                   }
                   
                } // VStack
@@ -87,11 +87,12 @@ struct LibraryView: View {
          } //VStack
          .navigationTitle("Library")
       } //Navigation
+      .navigationViewStyle(.stack)
       .onAppear {
          self.tracks = UserDefaults.standard.savedTracks()
       }
    } //Body
-      
+   
    
    private func delete(at offsets: IndexSet) {
       self.tracks.remove(atOffsets: offsets)
@@ -134,7 +135,7 @@ extension LibraryView: TrackMovingDelegate {
       }
       self.track = nextTrack
       return nextTrack
-
+      
    }
    
    func moveNextTrack() -> SearchViewModel.Cell? {

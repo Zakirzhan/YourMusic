@@ -36,7 +36,7 @@ enum Search {
 class SearchViewModel:NSObject, NSCoding{
    func encode(with coder: NSCoder) {
       coder.encode(cells, forKey: "cells")
-         
+      
    }
    
    required init?(coder: NSCoder) {

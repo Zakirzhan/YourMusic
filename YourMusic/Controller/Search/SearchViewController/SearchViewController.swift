@@ -126,7 +126,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
    }
    
    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-         let label = UILabel()
+      let label = UILabel()
       label.text = "Plaese enter search term above."
       label.textAlignment = .center
       label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)

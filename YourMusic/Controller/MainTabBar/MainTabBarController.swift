@@ -50,7 +50,7 @@ class MainTabBarController: UITabBarController {
       let tabBarList = [
          libraryHostView,
          generateViewControlles(rootVC: searchVCStoryboard, image: UIImage(systemName: "magnifyingglass"), title: "Search")
-                        ]
+      ]
       
       viewControllers = tabBarList
    }
@@ -65,7 +65,7 @@ class MainTabBarController: UITabBarController {
    }
    
    private func setupTrackDetailView() {
-
+      
       trackDetailView.tabBarDelegate = self
       trackDetailView.delegate = searchVCStoryboard
       
@@ -105,12 +105,12 @@ extension MainTabBarController: MainTabBarControllerDelagate {
       guard let viewModel = viewModel else { return }
       self.trackDetailView.configure(viewModel: viewModel)
    }
-      
+   
    func minimizeTrackDetailController() {
       maximizedTopAnchorConstraint.isActive = false
       bottomAnchorConstraint.constant = view.frame.height
       minimizedTopAnchorConstraint.isActive = true
-
+      
       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1,options: .curveEaseOut) {
          self.trackDetailView.miniTrackView.alpha = 1
          self.trackDetailView.minimizeButton.alpha = 0
@@ -120,6 +120,6 @@ extension MainTabBarController: MainTabBarControllerDelagate {
          self.tabBar.isHidden = false
       }
    }
-     
+   
 }
 
