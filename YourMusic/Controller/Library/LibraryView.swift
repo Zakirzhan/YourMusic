@@ -25,8 +25,11 @@ struct LibraryView: View {
                VStack {
                   HStack {
                      Button() {
-                        self.track = self.tracks[0]
-                        self.tabBarDelegate?.maximizedTrackDetailView(viewModel: track)
+                        if tracks.isEmpty == false {
+                           self.track = self.tracks[0]
+                           self.tabBarDelegate?.maximizedTrackDetailView(viewModel: track)
+                        }
+                        
                      } label: {
                         Image(systemName: "play.fill")
                            .foregroundColor(.pink)
